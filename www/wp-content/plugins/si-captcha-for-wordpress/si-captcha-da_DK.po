@@ -1,0 +1,207 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: si-captcha-for-wordpress\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/si-captcha-for-wordpress\n"
+"POT-Creation-Date: 2008-12-14 17:48+0000\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Parry 'Allnight' Hotter <parry@detheltnyestore.dk>\n"
+"Language-Team: detheltnyestore.dk <parry@detheltnyestore.dk>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Danish\n"
+"X-Poedit-Country: DENMARK\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: si-captcha.php:38
+#: si-captcha.php:95
+msgid "SI Captcha Options"
+msgstr "SI Captcha Indstillinger"
+
+#: si-captcha.php:61
+msgid "You do not have permissions for managing this option"
+msgstr "Du har ikke rettigheder til at administrere denne indstilling"
+
+#: si-captcha.php:92
+msgid "Options saved."
+msgstr "Indstillinger gemt"
+
+#: si-captcha.php:98
+msgid "Your theme must have a"
+msgstr "Dit tema skal have en"
+
+#: si-captcha.php:98
+msgid "tag inside your comments.php form. Most themes do."
+msgstr "tag inden i din comments.php formular. De fleste temaer har den allerede."
+
+#: si-captcha.php:99
+msgid "The best place to locate the tag is before the comment textarea, you may want to move it if it is below the comment textarea, or the captcha image and captcha code entry might display after the submit button."
+msgstr "Det bedste sted at place dette tag er før kommentartekstboksen. Du vil muligvis flytte den, hvis den er under kommentartekstboksen, for så vil der være en risiko for at koden bliver vist efter send-knappen."
+
+#: si-captcha.php:111
+msgid "CAPTCHA on Register Form:"
+msgstr "CAPTCHA på Registrerings formular:"
+
+#: si-captcha.php:115
+msgid "Enable CAPTCHA on the register form."
+msgstr "Aktivér CAPTCHA på registreringsformular."
+
+#: si-captcha.php:120
+msgid "CAPTCHA on Comment Form:"
+msgstr "CAPTCHA på kommentarformularen:"
+
+#: si-captcha.php:123
+msgid "Enable CAPTCHA on the comment form."
+msgstr "Aktivér CAPTCHA på kommentarformularen."
+
+#: si-captcha.php:126
+msgid "Hide CAPTCHA for"
+msgstr "Skjul CAPTCHA for"
+
+#: si-captcha.php:127
+msgid "registered"
+msgstr "registreret"
+
+#: si-captcha.php:128
+msgid "users who can:"
+msgstr "brugere som kan:"
+
+#: si-captcha.php:134
+msgid "Comment Form Rearrange:"
+msgstr "Omgruppering af kommentarformularen:"
+
+#: si-captcha.php:138
+msgid "Change the display order of the catpcha input field on the comment form. (see note below)."
+msgstr "Skift visningsrækkefølge for captcha-inputfeltet på kommentarformularen. (se note herunder)."
+
+#: si-captcha.php:145
+msgid "Problem:"
+msgstr "Problem:"
+
+#: si-captcha.php:146
+msgid "Sometimes the captcha image and captcha input field are displayed AFTER the submit button on the comment form."
+msgstr "Nogle gange vil captchabilledet og captcha-indtastningsfeltet blive vist efter send-knappen på kommentarformularen."
+
+#: si-captcha.php:147
+msgid "Fix:"
+msgstr "Løsning:"
+
+#: si-captcha.php:148
+msgid "Edit your current theme comments.php file and locate this line:"
+msgstr "Rediger filen 'comment.php' i dit nuværende tema og find denne linje:"
+
+#: si-captcha.php:150
+msgid "This tag is exactly where the captcha image and captcha code entry will display on the form, so move the line to BEFORE the comment textarea, uncheck the option box above, and the problem should be fixed."
+msgstr "Dette tag er nøjagtigt der, hvor captcha-billedet og captcha-kodeindtastningen bliver vist i formularen, så flyt denne linje hen FØR kommentartekstboksen, fjern afkrydsningen i checkboxen herover, og problemet skulle være løst."
+
+#: si-captcha.php:151
+msgid "Alernately you can just check the box above and javascript will attempt to rearrange it for you, but editing the comments.php, moving the tag, and unchecking this box is the best solution."
+msgstr "Alternativt kan du bare afkrydse checkboxen herover og javascriptet vil prøve at omgruppere det for dig, men at redigere comments.php, flytte tagget, og fjerne afkrydsningen er den bedste løsning."
+
+#: si-captcha.php:152
+msgid "Why is it better to uncheck this and move the tag? because the XHTML will no longer validate on the comment page if it is checked."
+msgstr "Hvorfor er det bedre at fjerne afkrydsningen og flytte tagget? Fordi kommentarsidens XHTML ikke længere vil validere, hvis den er afkrydset."
+
+#: si-captcha.php:155
+msgid "Update Options"
+msgstr "Opdater indstillinger"
+
+#: si-captcha.php:165
+msgid "All registered users"
+msgstr "Alle registrerede brugere"
+
+#: si-captcha.php:166
+msgid "Edit posts"
+msgstr "Rediger indlæg"
+
+#: si-captcha.php:167
+msgid "Publish Posts"
+msgstr "Udgiv indlæg"
+
+#: si-captcha.php:168
+msgid "Moderate Comments"
+msgstr "Moderer kommentarer"
+
+#: si-captcha.php:169
+msgid "Administer site"
+msgstr "Administrer site"
+
+#: si-captcha.php:188
+msgid "ERROR: si-captcha.php plugin says GD image support not detected in PHP!"
+msgstr "FEJL: si-captcha.php plugin'et siger er der ikke blev fundet \"GD image\"-understøttelse i PHP!"
+
+#: si-captcha.php:189
+msgid "Contact your web host and ask them why GD image support is not enabled for PHP."
+msgstr "Kontakt dem der hoster dit website og spørg dem, hvorfor \"GD image\" ikke er slået til i PHP. "
+
+#: si-captcha.php:193
+msgid "ERROR: si-captcha.php plugin says imagepng function not detected in PHP!"
+msgstr "FEJL: si-captcha.php plugin'et siger at der imagepng funktionen ikke blev fundet i PHP!"
+
+#: si-captcha.php:194
+msgid "Contact your web host and ask them why imagepng function is not enabled for PHP."
+msgstr "Kontakt dem der hoster dit website og spørg dem, hvorfor imagepng funktionen ikke er slået til i PHP. "
+
+#: si-captcha.php:198
+msgid "ERROR: si-captcha.php plugin says captcha_library not found."
+msgstr "FEJL: si-captcha.php plugin'et siger at captcha_library ikke blev fundet."
+
+#: si-captcha.php:232
+#: si-captcha.php:288
+msgid "CAPTCHA Image"
+msgstr "CAPTCHA-billede"
+
+#: si-captcha.php:233
+#: si-captcha.php:289
+msgid "Audible Version of CAPTCHA"
+msgstr "Hørbar udgave af CAPTCHA"
+
+#: si-captcha.php:234
+#: si-captcha.php:290
+msgid "Audio Version"
+msgstr "Lydudgave"
+
+#: si-captcha.php:236
+#: si-captcha.php:292
+msgid "Refresh Image"
+msgstr "Opdater billede"
+
+#: si-captcha.php:238
+#: si-captcha.php:294
+msgid "Reload Image"
+msgstr "Genindlæs billede"
+
+#: si-captcha.php:243
+#: si-captcha.php:299
+msgid "CAPTCHA Code (required)"
+msgstr "CAPTCHA kode (nødvendig)"
+
+#: si-captcha.php:261
+msgid "Submit Comment"
+msgstr "Indsend kommentar"
+
+#: si-captcha.php:313
+#: si-captcha.php:327
+#: si-captcha.php:337
+#: si-captcha.php:350
+msgid "ERROR"
+msgstr "FEJL"
+
+#: si-captcha.php:313
+#: si-captcha.php:337
+msgid "Please complete the CAPTCHA."
+msgstr "Udfyld venligst CAPTCHA"
+
+#: si-captcha.php:327
+#: si-captcha.php:350
+msgid "That CAPTCHA was incorrect."
+msgstr "Den CAPTCHA var ikke korrekt"
+
+#: si-captcha.php:385
+msgid "Error: You did not enter a Captcha phrase. Press your browsers back button and try again."
+msgstr "Fejl: Du indtastede ikke Captcha-teksten. Tryk på browserens tilbage-knap og prøv igen."
+
+#: si-captcha.php:397
+msgid "Error: You entered in the wrong Captcha phrase. Press your browsers back button and try again."
+msgstr "Fejl: Du indtastede en forkert Captcha-tekst. Tryk på browserens tilbage-knap og prøv igen."
+
