@@ -180,9 +180,9 @@
   if (!headers_sent() && !defined('NOSESSION')){
     session_name("DokuWiki");
     if (version_compare(PHP_VERSION, '5.2.0', '>')) {
-      session_set_cookie_params(0,DOKU_REL,'',($conf['securecookie'] && is_ssl()),true);
+      session_set_cookie_params(0,DOKU_REL,'',($conf['securecookie'] && is_ssl_dw()),true);
     }else{
-      session_set_cookie_params(0,DOKU_REL,'',($conf['securecookie'] && is_ssl()));
+      session_set_cookie_params(0,DOKU_REL,'',($conf['securecookie'] && is_ssl_dw()));
     }
     session_start();
 
@@ -420,7 +420,7 @@ function getBaseURL($abs=null){
   if(!$port)  $port = $_SERVER['SERVER_PORT'];
   if(!$port)  $port = 80;
 
-  if(!is_ssl()){
+  if(!is_ssl_dw()){
     $proto = 'http://';
     if ($port == '80') {
       $port='';
@@ -445,7 +445,7 @@ function getBaseURL($abs=null){
  *
  * @returns bool true when SSL is active
  */
-function is_ssl(){
+function is_ssl_dw(){
     if (preg_match('/^(|off|false|disabled)$/i',$_SERVER['HTTPS'])){
         return false;
     }else{

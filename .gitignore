@@ -1,2 +1,10 @@
 wp-config.php
 bb-config.php
+/wikidata/attic/*
+/wikidata/cache/*
+/wikidata/index/*
+/wikidata/locks/*
+/wikidata/media/*
+/wikidata/meta/*
+/wikidata/pages/*
+/wikidata/tmp/*

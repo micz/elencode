@@ -18,4 +18,9 @@
 # upload 8
 # delete 16
 
-*               @ALL        8
+*   @ALL          1
+*   @editor       16
+*   @author       4
+*		@contributor  4
+*   @subscriber   1
+
