@@ -19,8 +19,7 @@ class Usermodel extends Model {
 
     function get_userdata_by($field,$value)
     {
-      $qry='SELECT wp_users.*,wp_usermeta.meta_value AS Role FROM wp_users LEFT JOIN wp_usermeta ON wp_usermeta.user_id=wp_users.ID WHERE '.$field."='$value'".' AND wp_usermeta.meta_key=\'wp_user_level\' LIMIT 1';
-      //if(!$userdata=$this->db->get_where('wp_users',array($field=>$value),1,0)){
+      $qry='SELECT wp_users.*,wp_usermeta_tmp.meta_value AS Role FROM wp_users LEFT JOIN (SELECT user_id,meta_value FROM wp_usermeta WHERE meta_key=\'wp_user_level\' LIMIT 1) wp_usermeta_tmp ON wp_usermeta_tmp.user_id=wp_users.ID WHERE '.$field."='$value'".' LIMIT 1';
       if(!$userdata=$this->db->query($qry)){
         return new User();
       }else{
