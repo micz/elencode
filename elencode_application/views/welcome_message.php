@@ -43,7 +43,7 @@ code {
 </head>
 <body>
 
-<h1>Welcome <?echo $userdata->Username.' '?>to CodeIgniter!</h1>
+<h1>Welcome <?= $userdata->Username.' '?>to CodeIgniter!<?= $userdata->is_admin()?'<br/>You\'re a site administrator!':'';?></h1>
 
 <p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
 

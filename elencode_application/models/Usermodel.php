@@ -16,14 +16,26 @@ class Usermodel extends Model {
     {
         parent::Model();
     }
-    
-    function get_userdata_by_login($username)
+
+    function get_userdata_by($field,$value)
     {
-      if(!$userdata=$this->db->get_where('wp_users',array('user_login'=>$username),1,0)){
+      $qry='SELECT wp_users.*,wp_usermeta.meta_value AS Role FROM wp_users LEFT JOIN wp_usermeta ON wp_usermeta.user_id=wp_users.ID WHERE '.$field."='$value'".' AND wp_usermeta.meta_key=\'wp_user_level\' LIMIT 1';
+      //if(!$userdata=$this->db->get_where('wp_users',array($field=>$value),1,0)){
+      if(!$userdata=$this->db->query($qry)){
         return new User();
       }else{
         return new User($userdata->row());
       }
+    }
+
+    function get_userdata_by_login($username)
+    {
+      return $this->get_userdata_by('user_login',$username);
+    }
+
+    function get_userdata_by_id($userid)
+    {
+      return $this->get_userdata_by('ID',$userid);
     }
 }
 
@@ -32,16 +44,24 @@ class User {
 
     var $ID;
     var $Username;
+    var $Role;
 
     function __construct($userdata='')
     {
       if($userdata==''){
         $this->ID=0;
         $this->Username='Guest';
+        $this->Role=-1;
       }else{
         $this->ID=$userdata->ID;
         $this->Username=$userdata->user_login;
+        $this->Role=$userdata->Role;
       }
-    }    
+    }
+    
+    function is_admin()
+    {
+      return $this->Role==10;
+    }
 }
 ?>
