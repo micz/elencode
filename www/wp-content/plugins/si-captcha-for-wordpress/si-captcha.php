@@ -3,7 +3,7 @@
 Plugin Name: SI CAPTCHA
 Plugin URI: http://www.642weather.com/weather/scripts-wordpress-captcha.php
 Description: A CAPTCHA to protect comment posts and or registrations in WordPress
-Version: 1.5.2
+Version: 1.6
 Author: Mike Challis
 Author URI: http://www.642weather.com/weather/scripts.php
 */
@@ -45,6 +45,7 @@ if (!get_option($value)) {
          'si_captcha_perm' => 'true',
          'si_captcha_perm_level' => 'read',
          'si_captcha_comment' => 'true',
+         'si_captcha_comment_class' => '',
          'si_captcha_register' => 'true',
          'si_captcha_rearrange' => 'false');
         update_option($value,$defaults[$value]);
@@ -75,6 +76,9 @@ function options_page() {
          update_option( 'si_captcha_comment', 'true' );
         else
          update_option( 'si_captcha_comment', 'false' );
+
+    if ( !isset( $_POST['si_captcha_comment_class'] ) )
+         update_option( 'si_captcha_comment_class', '' );
 
     if ( isset( $_POST['si_captcha_register'] ) )
          update_option( 'si_captcha_register', 'true' );
@@ -126,7 +130,10 @@ function options_page() {
         <label name="si_captcha_perm" for="si_captcha_perm"><?php _e('Hide CAPTCHA for', 'si-captcha') ?>
         <strong><?php _e('registered', 'si-captcha') ?></strong>
          <?php _e('users who can:', 'si-captcha') ?></label>
-        <?php $this->si_captcha_perm_dropdown('si_captcha_perm_level', $this->get_settings('si_captcha_perm_level'));  ?>
+        <?php $this->si_captcha_perm_dropdown('si_captcha_perm_level', $this->get_settings('si_captcha_perm_level'));  ?><br />
+
+        <?php _e('CSS class name for CAPTCHA input field on the comment form', 'si-captcha') ?>:<input name="si_captcha_comment_class" id="si_captcha_comment_class" type="text" value="<?php echo $this->get_settings('si_captcha_comment_class');  ?>" /><br />
+        <?php _e('(Enter a CSS class name only if your theme uses one for comment text inputs. Default is blank for none.)', 'si-captcha') ?>
     </td>
         </tr>
 
@@ -216,6 +223,7 @@ function addCaptchaToCommentForm() {
     }
 
     $captcha_rearrange = $this->get_settings('si_captcha_rearrange');
+    $captcha_comment_class = $this->get_settings('si_captcha_comment_class');
 
 // the captch html
 echo '
@@ -239,7 +247,13 @@ echo '
          style="border-style: none; vertical-align:bottom;" onclick="this.blur()" /></a>
 </div>
 <div id="captchaInputDiv" style="display:block;" >
-<input type="text" name="captcha_code" id="captcha_code" tabindex="4" aria-required=\'true\' style="width:65px;" />
+<input type="text" name="captcha_code" id="captcha_code" tabindex="4" aria-required=\'true\' style="width:65px;" ';
+
+if ($captcha_comment_class != '') {
+  echo 'class="'.$captcha_comment_class.'" ';
+}
+
+echo '/>
  <label for="captcha_code"><small>'.__('CAPTCHA Code (required)', 'si-captcha').'</small></label>
 </div>
 </div>
@@ -403,6 +417,7 @@ function unset_si_captcha_options () {
   delete_option('si_captcha_perm');
   delete_option('si_captcha_perm_level');
   delete_option('si_captcha_comment');
+  delete_option('si_captcha_comment_class');
   delete_option('si_captcha_register');
   delete_option('si_captcha_rearrange');
 }

@@ -100,7 +100,10 @@ Here is a list of the options:
 
 3. CAPTCHA on Comment Form:  - Hide CAPTCHA for registered users (select permission level)
 
-4. Comment Form Rearrange: - Changes the display order of the catpcha input field on the comment form
+4. CAPTCHA on Comment Form:  - CSS class name for CAPTCHA input field on the comment form: 
+(Enter a CSS class name only if your theme uses one for comment text inputs. Default is blank for none.)
+
+5. Comment Form Rearrange: - Changes the display order of the catpcha input field on the comment form
 
 
 == Usage ==
@@ -135,6 +138,7 @@ At this point it would be useful to read [Installing WordPress in Your Language]
 The following translations are included in the download zip file:
 
 * Danish (da_DK) - Translated by [Parry](http://www.detheltnyestore.dk/)
+* German (de_DE) - Translated by [Sebastian Kreideweiﬂ](http://www.cps-it.de/)
 * Italian (it_IT) - Translated by [Gianni Diurno](http://gidibao.net/ "Gianni Diurno")
 * French (fr_FR) - Translated by [Pierre Sudarovich](http://pierre.sudarovich.free.fr/)
 * Norwegian (nb_NO) - Translated by [Roger Sylte](http://www.taekwon-do.org/)
@@ -155,6 +159,20 @@ Of course! It will be very gratefully received. Please read [Translating WordPre
 * If you have any questions, feel free to email me also. Thanks!
 
 == Version History ==
+
+rel 1.6 (23 Mar 2009)
+-------
+- Added new option on configuration page: You can set a CSS class name for CAPTCHA input field on the comment form: 
+(Enter a CSS class name only if your theme uses one for comment text inputs. Default is blank for none.)
+
+rel 1.5.4 (19 Mar 2009)
+-------
+- Updated Danish Language (da_DK) - Translated by [Parry](http://www.detheltnyestore.dk/)
+
+rel 1.5.3 (12 Mar 2009)
+-------
+- Added German Language (de_DE) - Translated by [Sebastian Kreideweiﬂ](http://www.cps-it.de/)
+- Updated Danish Language (da_DK) - Translated by [Parry](http://www.detheltnyestore.dk/)
 
 rel 1.5.2 (24 Feb 2009)
 -------
