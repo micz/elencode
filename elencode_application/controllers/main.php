@@ -1,8 +1,8 @@
 <?php
 
-class Welcome extends Controller {
+class Main extends Controller {
 
-	function Welcome()
+	function __construct()
 	{
 		parent::Controller();	
 	}
@@ -10,7 +10,7 @@ class Welcome extends Controller {
 	function index()
 	{
     $data['userdata']=$this->wpauth->get_user();
-		$this->load->view('welcome_message',$data);
+		$this->load->view('main',$data);
 	}
 }
 
