@@ -43,7 +43,7 @@ code {
 </head>
 <body>
 
-<h1>Welcome <?echo $username.' '?>to CodeIgniter!</h1>
+<h1>Welcome <?echo $userdata->Username.' '?>to CodeIgniter!</h1>
 
 <p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
 

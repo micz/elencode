@@ -9,7 +9,7 @@ class Welcome extends Controller {
 	
 	function index()
 	{
-    $data['username']=$this->wpauth->get_user();
+    $data['userdata']=$this->wpauth->get_user();
 		$this->load->view('welcome_message',$data);
 	}
 }

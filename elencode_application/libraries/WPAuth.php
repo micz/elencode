@@ -18,23 +18,19 @@ class WPAuth {
   function __construct()
   {
     $this->CI=&get_instance();
-    $this->CI->load->database();
     $this->CI->config->load('wp_config');
     $this->_load_wp_secrets();
   }
 
   function get_user()
   {
-    if($userid=$this->_validate_auth_cookie('','logged_in')){
-      return $userid;
-    }else{
-      return 'Guest';
-    }
+    return $this->_validate_auth_cookie('','logged_in');
   }
 
-  private function _validate_auth_cookie($cookie = '', $scheme = '') {
-    if ( ! $cookie_elements = $this->_parse_auth_cookie($cookie, $scheme) ) {
-      return false;
+  private function _validate_auth_cookie($cookie = '', $scheme = '')
+  {
+    if(!$cookie_elements=$this->_parse_auth_cookie($cookie, $scheme)){
+      return new User();
     }
 
     extract($cookie_elements, EXTR_OVERWRITE);
@@ -54,19 +50,15 @@ class WPAuth {
     $hash = hash_hmac('md5', $username . '|' . $expiration, $key);
 
     if ( $hmac != $hash ) {
-      return false;
+      return new User();
     }
 
-    $user = $this->_get_userdatabylogin($username);
-    if(!$user){
-      return false;
-    }
-
-    return $user->ID;
+    return $this->CI->Usermodel->get_userdata_by_login($username);
   }
   
   
-  private function _parse_auth_cookie($cookie = '', $scheme = '') {
+  private function _parse_auth_cookie($cookie='',$scheme='')
+  {
     if ( empty($cookie) ) {
       switch ($scheme){
         case 'auth':
@@ -103,13 +95,15 @@ class WPAuth {
   }
   
   
-  private function _hash($data, $scheme = 'auth') {
+  private function _hash($data, $scheme = 'auth')
+  {
     $salt = $this->_salt($scheme);
     return hash_hmac('md5', $data, $salt);
   }
   
   
-  private function _salt($scheme = 'auth') {
+  private function _salt($scheme = 'auth')
+  {
     $secret_key = '';
     if ( ('' != $this->CI->config->item('SECRET_KEY')) && ( $this->CI->config->item('wp_default_secret_key') != $this->CI->config->item('SECRET_KEY') ))
       $secret_key = $this->CI->config->item('SECRET_KEY');
@@ -136,20 +130,11 @@ class WPAuth {
       $salt = hash_hmac('md5', $scheme, $secret_key);
     }
 
-    return $secret_key . $salt;
+    return $secret_key.$salt;
  }
  
- private function _get_userdatabylogin($username)
- {
-  if(!$user=$this->CI->db->get_where('wp_users',array('user_login'=>$username),1,0))
-		return false;
-	
-	$userdata=$user->row();	
-  
-  return $userdata;
- }
-
-  private function _is_ssl() {
+  private function _is_ssl()
+  {
     if ( isset($_SERVER['HTTPS']) ) {
       if ( 'on' == strtolower($_SERVER['HTTPS']) )
         return true;
