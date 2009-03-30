@@ -10,7 +10,7 @@
 *
 */
 
-class Options {
+class Elenconfig {
 
   var $CI;
   var $Options;
