@@ -19,11 +19,18 @@ class Elenconfig {
   {
     $this->Options=array();
     $this->CI=&get_instance();
+    $this->CI->load->library('el/elencache');
     if(($params!='')&&($params['autoload']==1))$this->_load_options();
   }
 
   private function _load_options()
   {
+    if($this->Options=$this->CI->elencache->load('elenconfig.php')){
+      return true;
+    }else{
+      $this->Options=array();
+    }
+
     if(!$query=$this->CI->db->query('SELECT name,value FROM el_config WHERE autoload=1'))
       return false;
 		
@@ -31,6 +38,8 @@ class Elenconfig {
     {
       $this->Options[$row->name]=$row->value;
     }
+    
+    $this->CI->elencache->save('elenconfig.php',$this->Options);
     
     return true;
   }
