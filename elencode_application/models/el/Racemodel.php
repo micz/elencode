@@ -10,38 +10,44 @@
 *
 */
 
-class Skills {
+class Racemodel extends Model {
 
-  var $CI;
-  var $Names;
-  
-  function __construct()
-  {
-    $this->Names=array();
-    $this->CI=&get_instance();
-    $this->CI->load->library('el/elencache');
-    $this->_load_names();
-  }
-
-  private function _load_names()
-  {
-    if($this->Names=$this->CI->elencache->load('skills.php')){
-      return true;
-    }else{
-      $this->Names=array();
-    }
-
-    if(!$query=$this->CI->db->query('SELECT id,name FROM el_skills ORDER BY id ASC'))
-      return false;
-		
-	  foreach ($query->result() as $row)
+    function __construct()
     {
-      $this->Names[$row->id]=$row->name;
+        parent::Model();
     }
-    
-    $this->CI->elencache->save('skills.php',$this->Names);
-    
-    return true;
-  }
+}
+
+class Race {
+
+    var $ID;
+    var $male_name;
+    var $male_name_art;
+    var $female_name;
+    var $female_name_art;
+    var $subraces_male;
+    var $subraces_female;
+
+    function __construct($rowdata='')
+    {
+      if($rowdata==''){
+        $this->ID=-1;
+        $this->male_name='';
+        $this->male_name_art='';
+        $this->female_name='';
+        $this->female_name_art='';
+        $this->subraces_male='';
+        $this->subraces_female='';
+      }else{
+        $this->ID=$rowdata->id;
+        $this->male_name=$rowdata->male_name;
+        $this->male_name_art=$rowdata->male_name_art;
+        $this->female_name=$rowdata->female_name;
+        $this->female_name_art=$rowdata->female_name_art;
+        $this->subraces_male=$rowdata->subraces_male;
+        $this->subraces_female=$rowdata->subraces_female;
+      }
+    }
+
 }
 ?>

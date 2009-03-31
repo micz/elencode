@@ -17,15 +17,17 @@ class Admin extends Controller {
 	function __construct()
 	{
 		parent::Controller();
-		$this->load->library('el/elenconfig',array('autoload'=>1));
+		$this->load->library('el/elenconfig');
     $this->current_user=$this->wpauth->get_user();
     if(!$this->current_user->is_admin()) redirect('','location',301);
+    $this->load->library('el/universeconfig');
 	}
 	
 	function index()
 	{
     $data['userdata']=$this->current_user;
     $data['test_config']=$this->elenconfig->get_option('test');
+    $data['test_uniconf']=$this->universeconfig->Races;
 		$this->load->view('admin/main',$data);
 	}
 }

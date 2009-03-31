@@ -22,6 +22,8 @@
 
 <p>Config test=<?= $test_config?></p>
 
+<p>Config test=<?= var_dump($test_uniconf)?></p>
+
 <p>If you would like to edit this page you'll find it located at:</p>
 <code>system/application/views/welcome_message.php</code>
 
