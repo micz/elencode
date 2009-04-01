@@ -25,7 +25,7 @@ class Elencache {
   {
       $buffer='<?if (!defined(\'BASEPATH\')) exit(\'No direct script access allowed\');'."\r".'$arrayname='."'$arrayname';\r";
       $filepath=$this->cache_dir.$filename;
-      array_walk($values,'filter_cached_array_save',$from_object);
+      array_walk($values,array(&$this,'_filter_cached_array_save'),$from_object);
       foreach ($values as $key => $value)
       {
         $buffer.='$'.$arrayname.'[\''.$key.'\']=\''.$value.'\';'."\r";
@@ -39,7 +39,7 @@ class Elencache {
   {
     if($this->is_cached($filename)){
       require_once($this->cache_dir.$filename);
-      array_walk($$arrayname,'filter_cached_array_load',$to_object);
+      array_walk($$arrayname,array(&$this,'_filter_cached_array_load'),$to_object);
       return $$arrayname;
     }else{
       return false;
@@ -58,17 +58,17 @@ class Elencache {
     @fclose($fp);
     return true;
   }
-}
 
-function filter_cached_array_save(&$item,$key,$from_object)
-{
-  if($from_object)$item=serialize($item);
-  $item=addslashes($item);
-}
+  private function _filter_cached_array_save(&$item,$key,$from_object)
+  {
+    if($from_object)$item=serialize($item);
+    $item=addslashes($item);
+  }
 
-function filter_cached_array_load(&$item,$key,$to_object)
-{
-  $item=stripslashes($item);
-  if($to_object)$item=unserialize($item);
+  private function _filter_cached_array_load(&$item,$key,$to_object)
+  {
+    $item=stripslashes($item);
+    if($to_object)$item=unserialize($item);
+  }
 }
 ?>
