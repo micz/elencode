@@ -17,6 +17,12 @@ class Universeconfig {
   var $Abilities;
   var $Classes;
   var $Races;
+  var $skills_dice;
+  var $abilities_step;
+  var $race_class;
+  var $class_skill;
+  var $skill_cost;
+  var $ability_first_points;
   
   function __construct()
   {
@@ -35,6 +41,31 @@ class Universeconfig {
     $this->_load_abilities();
     $this->_load_classes();
     $this->_load_races();
+    $this->_load_options();
+  }
+
+  private function _load_options()
+  {
+    $cache_options=array();
+    if($cache_options=$this->CI->elencache->load('universe_opt.php')){
+      foreach ($cache_options as $k => $v)
+      {
+        $this->{$k}=$v;
+      }
+      return true;
+    }
+
+    if(!$query=$this->CI->db->query('SELECT name,value FROM el_config WHERE name IN (\'skills_dice\',\'abilities_step\',\'race_class\',\'class_skill\',\'skill_cost\',\'ability_first_points\')'))
+		return false;
+
+	  foreach ($query->result() as $row)
+    {
+      $this->{$row->name}=$row->value;
+      $cache_options[$row->name]=$row->value;
+    }
+
+    $this->CI->elencache->save('universe_opt.php',$cache_options,'unicache');
+    return true;
   }
 
   private function _load_skills()

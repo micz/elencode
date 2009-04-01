@@ -24,6 +24,8 @@
 
 <p>Config test=<?= var_dump($test_uniconf)?></p>
 
+<p>Uniopt test=<?= var_dump($test_uniopt)?></p>
+
 <p>If you would like to edit this page you'll find it located at:</p>
 <code>system/application/views/welcome_message.php</code>
 

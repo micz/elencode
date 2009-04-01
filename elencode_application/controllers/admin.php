@@ -28,6 +28,7 @@ class Admin extends Controller {
     $data['userdata']=$this->current_user;
     $data['test_config']=$this->elenconfig->get_option('test');
     $data['test_uniconf']=$this->universeconfig->Races;
+    $data['test_uniopt']=$this->universeconfig->ability_first_points;
 		$this->load->view('admin/main',$data);
 	}
 }
