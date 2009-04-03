@@ -11,6 +11,7 @@
 */
 
 $lang['admin_panel_title']='Admin Panel';
+$lang['admin_menu_main']='Main';
 $lang['admin_menu_general_option']='General Options';
 $lang['admin_menu_universe_option']='Universe Options';
 ?>

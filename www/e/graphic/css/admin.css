@@ -1,7 +1,7 @@
 body {
  background-color: #fff;
  margin: 40px;
- font-family: Lucida Grande, Verdana, Sans-serif;
+ font-family: "Lucida Grande", Verdana, Sans-serif;
  font-size: 14px;
  color: #4F5155;
 }
@@ -32,3 +32,12 @@ code {
  margin: 14px 0 14px 0;
  padding: 12px 10px 12px 10px;
 }
+
+#pagewidth{margin-left:auto;margin-right:auto;width:98%;}
+#left{float:left;margin:0px;width:160px;line-height:1.5em;text-align:left;padding-top:10px;}
+html>body #left{width:160px;}
+#main{margin:10px 0px 0px 170px;padding:5px 0px 0px 10px;text-align:left;}
+html>body #main{height:auto;}
+#footer{ border-top:1px solid #D0D0D0;clear:both;width:100%;margin:10px auto 0 auto;text-align:center;font-size:11px;padding:5px 0px 5px 0px;}
+#left ul{padding:0px 0px 5px 0px;margin:0px 0px 15px 0px;}
+#left li{list-style:none;}

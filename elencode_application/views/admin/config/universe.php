@@ -9,35 +9,5 @@
 * Contact Mic at m [at] micz [dot] it
 *
 */
-
-class Admin extends Controller {
-
-  var $current_user;
-  private $data;
-
-	function __construct()
-	{
-		parent::Controller();
-    $this->load->library('el/elenconfig',array('autoload'=>1));
-    $this->lang->load('admin',$this->elenconfig->Options['language']);
-    $this->current_user=$this->wpauth->get_user();
-    if(!$this->current_user->is_admin()) redirect('','location',301);
-    $this->load->library('el/universeconfig');
-    $this->data['userdata']=$this->current_user;
-    $this->data['sitename']=$this->elenconfig->Options['sitename'];
-	}
-	
-	function index()
-	{
-    $this->data['main_content']='admin/'.__FUNCTION__;
-		$this->load->view('admin/main',$this->data);
-	}
-
-  function config()
-	{
-    $this->data['main_content']='admin/'.__FUNCTION__;
-    $this->data['form_type']=$this->uri->segment(3,'general');
-		$this->load->view('admin/main',$this->data);
-	}
-}
 ?>
+Universe
