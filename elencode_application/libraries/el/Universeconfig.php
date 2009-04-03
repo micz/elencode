@@ -12,7 +12,7 @@
 
 class Universeconfig {
 
-  var $CI;
+  private $CI;
   var $Skills;
   var $Abilities;
   var $Classes;

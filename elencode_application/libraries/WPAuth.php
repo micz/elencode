@@ -12,7 +12,7 @@
 
 class WPAuth {
 
-  var $CI;
+  private $CI;
   var $WPSecrets;
   
   function __construct()

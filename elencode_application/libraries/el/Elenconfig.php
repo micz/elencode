@@ -12,7 +12,7 @@
 
 class Elenconfig {
 
-  var $CI;
+  private $CI;
   var $Options;
   
   function __construct($params='')

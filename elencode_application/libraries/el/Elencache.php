@@ -12,7 +12,7 @@
 
 class Elencache {
 
-  var $CI;
+  private $CI;
   var $cache_dir;
   
   function __construct()
