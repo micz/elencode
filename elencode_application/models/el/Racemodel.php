@@ -15,6 +15,28 @@ class Racemodel extends Model {
     function __construct()
     {
         parent::Model();
+        $this->load->library('el/elencache');
+    }
+
+    function get_all()
+    {
+      if($outbuffer=$this->elencache->load('races.php',1)){
+        return $outbuffer;
+      }else{
+        $outbuffer=array();
+      }
+
+      if(!$query=$this->db->query('SELECT * FROM el_races ORDER BY id ASC'))
+        return false;
+
+      foreach ($query->result() as $row)
+      {
+        $outbuffer[$row->id]=new Race($row);
+      }
+
+      $this->elencache->save('races.php',$outbuffer,'races_values',1);
+
+      return $outbuffer;
     }
 }
 

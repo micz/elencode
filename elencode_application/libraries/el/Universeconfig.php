@@ -70,23 +70,7 @@ class Universeconfig {
 
   private function _load_skills()
   {
-    if($this->Skills=$this->CI->elencache->load('skills.php',1)){
-      return true;
-    }else{
-      $this->Skills=array();
-    }
-
-    if(!$query=$this->CI->db->query('SELECT * FROM el_skills ORDER BY id ASC'))
-      return false;
-		
-	  foreach ($query->result() as $row)
-    {
-      $this->Skills[$row->id]=new Skill($row);
-    }
-    
-    $this->CI->elencache->save('skills.php',$this->Skills,'skills_values',1);
-    
-    return true;
+    $this->Skills=$this->CI->skillmodel->get_all();
   }
 
   private function _load_abilities()
@@ -112,44 +96,12 @@ class Universeconfig {
 
   private function _load_classes()
   {
-    if($this->Classes=$this->CI->elencache->load('classes.php',1)){
-      return true;
-    }else{
-      $this->Classes=array();
-    }
-
-    if(!$query=$this->CI->db->query('SELECT * FROM el_classes ORDER BY id ASC'))
-      return false;
-
-	  foreach ($query->result() as $row)
-    {
-      $this->Classes[$row->id]=new EClass($row);
-    }
-
-    $this->CI->elencache->save('classes.php',$this->Classes,'classes_values',1);
-
-    return true;
+    $this->Classes=$this->CI->eclassmodel->get_all();
   }
 
   private function _load_races()
   {
-    if($this->Races=$this->CI->elencache->load('races.php',1)){
-      return true;
-    }else{
-      $this->Races=array();
-    }
-
-    if(!$query=$this->CI->db->query('SELECT * FROM el_races ORDER BY id ASC'))
-      return false;
-
-	  foreach ($query->result() as $row)
-    {
-      $this->Races[$row->id]=new Race($row);
-    }
-
-    $this->CI->elencache->save('races.php',$this->Races,'races_values',1);
-
-    return true;
+    $this->Races=$this->CI->racemodel->get_all();
   }
 }
 ?>

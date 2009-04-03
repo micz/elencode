@@ -15,6 +15,28 @@ class Skillmodel extends Model {
     function __construct()
     {
         parent::Model();
+        $this->load->library('el/elencache');
+    }
+
+    function get_all()
+    {
+      if($outbuffer=$this->elencache->load('skills.php',1)){
+        return $outbuffer;
+      }else{
+        $outbuffer=array();
+      }
+
+      if(!$query=$this->db->query('SELECT * FROM el_skills ORDER BY id ASC'))
+        return false;
+
+      foreach ($query->result() as $row)
+      {
+        $outbuffer[$row->id]=new Skill($row);
+      }
+
+      $this->elencache->save('skills.php',$outbuffer,'skills_values',1);
+
+      return $outbuffer;
     }
 }
 

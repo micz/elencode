@@ -15,6 +15,28 @@ class EClassmodel extends Model {
     function __construct()
     {
         parent::Model();
+        $this->load->library('el/elencache');
+    }
+
+    function get_all()
+    {
+      if($outbuffer=$this->elencache->load('classes.php',1)){
+        return $outbuffer;
+      }else{
+        $outbuffer=array();
+      }
+
+      if(!$query=$this->db->query('SELECT * FROM el_classes ORDER BY id ASC'))
+        return false;
+
+      foreach ($query->result() as $row)
+      {
+        $outbuffer[$row->id]=new EClass($row);
+      }
+
+      $this->elencache->save('classes.php',$outbuffer,'classes_values',1);
+
+      return $outbuffer;
     }
 }
 
