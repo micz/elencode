@@ -14,6 +14,7 @@ if(!function_exists('lang'))
 {
 	function lang($args)
 	{
+    $args=func_get_args();
 		$CI=&get_instance();
 		$line=$CI->lang->line($args);
 		return $line;

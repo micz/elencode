@@ -19,9 +19,9 @@ class EL_Language extends CI_Language {
 
   function line($args = null)
 	{
-    if ( is_null( $args ) )
+    if(is_null($args))
 			return false;
-		$args = func_get_args();
+		if(!is_array($args))$args=func_get_args();
     $line_id=array_shift($args);
 		$line = ($line_id == '' || !isset($this->language[$line_id])) ? FALSE : $this->language[$line_id];
 		return @vsprintf($line,$args);
