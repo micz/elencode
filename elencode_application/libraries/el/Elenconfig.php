@@ -27,16 +27,24 @@ class Elenconfig {
   {
     if($this->Options=$this->CI->elencache->load('elenconfig.php')){
       return true;
-    }else{
-      $this->Options=array();
     }
 
+    //From el_config
     if(!$query=$this->CI->db->query('SELECT name,value FROM el_config WHERE autoload=1'))
       return false;
 		
 	  foreach ($query->result() as $row)
     {
       $this->Options[$row->name]=$row->value;
+    }
+
+    //From wp_options
+    if(!$query=$this->CI->db->query('SELECT option_name,option_value FROM wp_options WHERE option_name=\'blogname\''))
+      return false;
+
+	  foreach ($query->result() as $row)
+    {
+      $this->Options[$row->option_name=='blogname'?'sitename':$row->option_name]=$row->option_value;
     }
     
     $this->CI->elencache->save('elenconfig.php',$this->Options);
