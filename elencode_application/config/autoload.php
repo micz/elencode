@@ -39,7 +39,7 @@
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('wpauth','database');
+$autoload['libraries'] = array('wpauth','database','language');
 
 
 /*
@@ -51,7 +51,7 @@ $autoload['libraries'] = array('wpauth','database');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url');
+$autoload['helper'] = array('url','language');
 
 
 /*
