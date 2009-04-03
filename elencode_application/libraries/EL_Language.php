@@ -23,7 +23,7 @@ class EL_Language extends CI_Language {
 			return false;
 		$args = func_get_args();
     $line_id=array_shift($args);
-		$line = ($line == '' OR ! isset($this->language[$line_id])) ? FALSE : $this->language[$line_id];
+		$line = ($line_id == '' || !isset($this->language[$line_id])) ? FALSE : $this->language[$line_id];
 		return @vsprintf($line,$args);
 	}
 }
