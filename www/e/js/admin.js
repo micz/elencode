@@ -1,4 +1,3 @@
-<? if (!defined('BASEPATH')) exit('No direct script access allowed');
 /*
 * Copyright 2009 Elencode
 * This file is part of Elencode.
@@ -10,16 +9,27 @@
 *
 */
 
-$lang['admin_panel_title']='Admin Panel';
-$lang['admin_menu_main']='Main';
-$lang['admin_menu_general_option']='General Options';
-$lang['admin_menu_universe_option']='Universe Options';
-$lang['admin_footer_rendered']='Page rendered in %s seconds';
-$lang['admin_general_name_heading']='Name';
-$lang['admin_general_value_heading']='Value';
-$lang['admin_btn_edit']='Edit';
-$lang['admin_btn_confirm']='Confirm';
-$lang['admin_btn_cancel']='Cancel';
-$lang['admin_saving']='Saving...';
-$lang['admin_error']='Error!';
-?>
+function tb_edit_value(id)
+{
+  $('#v'+id).hide();
+  $('#vm'+id).show();
+  $('#btnm'+id).show();
+  $('#btne'+id).hide();
+}
+
+function tb_cancel_mod(id)
+{
+  $('#v'+id).show();
+  $('#vm'+id).hide();
+  $('#btnm'+id).hide();
+  $('#btne'+id).show();
+}
+
+function tb_confirm_mod(id,ajax_url,data)
+{
+  $('#vm'+id).hide();
+  $('#btnm'+id).hide();
+  $('#wm'+id).show();
+  $('#w'+id).show();
+  $.ajax({url:ajax_url,type:'POST',dataType:'script',data:data+'&htmlid='+id});
+}

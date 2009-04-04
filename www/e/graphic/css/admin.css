@@ -10,6 +10,7 @@ a {
  color: #003399;
  background-color: transparent;
  font-weight: normal;
+ cursor:pointer;
 }
 
 h1 {
@@ -41,3 +42,10 @@ html>body #main{height:auto;}
 #footer{ border-top:1px solid #D0D0D0;clear:both;width:100%;margin:10px auto 0 auto;text-align:center;font-size:11px;padding:5px 0px 5px 0px;}
 #left ul{padding:0px 0px 5px 0px;margin:0px 0px 15px 0px;}
 #left li{list-style:none;}
+table.opt_tb{width:90%;}
+table.opt_tb tr.r1{background:#f7f7f7;}
+table.opt_tb tr.r2{background:white;}
+table.opt_tb td.opt_tb_n,table.opt_tb td.opt_tb_v{width:40%;}
+table.opt_tb td.opt_tb_b{width:20%;}
+.invis{display:none;}
+.error_msg{color:red;}

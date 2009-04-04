@@ -10,44 +10,48 @@
 *
 */
 
-class Admin extends Controller {
+class Ajax extends Controller {
 
   var $current_user;
-  private $data;
 
 	function __construct()
 	{
 		parent::Controller();
-    $this->load->library('el/elenconfig',array('autoload'=>1));
-    $this->lang->load('admin',$this->elenconfig->Options['language']);
     $this->current_user=$this->wpauth->get_user();
-    if(!$this->current_user->is_admin()) redirect('','location',301);
-    $this->data['userdata']=$this->current_user;
-    $this->data['sitename']=$this->elenconfig->Options['sitename'];
-    $this->data['sectiontitle']='';
+    $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
+    $this->output->set_header("Cache-Control: post-check=0, pre-check=0");
+    $this->output->set_header("Pragma: no-cache");
 	}
 	
 	function index()
 	{
-    $this->data['main_content']='admin/'.__FUNCTION__;
-		$this->load->view('admin/main',$this->data);
+    $this->output->set_output('');
 	}
 
-  function config()
+  function admin()
 	{
-    $this->data['main_content']='admin/'.__FUNCTION__;
-    $this->data['form_type']=$this->uri->segment(3,'general');
-    switch($this->data['form_type']){
-      case 'general':
-        $this->data['sectiontitle']=' :: '.lang('admin_menu_general_option');
-        $this->data['general_data']=$this->elenconfig->Options;
-        break;
-      case 'universe':
-        $this->data['sectiontitle']=' :: '.lang('admin_menu_universe_option');
-        $this->load->library('el/universeconfig');
+    if(!$this->current_user->is_admin()){
+      $this->output->set_status_header('401');
+      $this->output->set_output('');
+    }
+
+    $this->load->library('el/elenconfig');
+
+    $out_buffer='';
+    $htmlid=$this->input->post('htmlid');
+
+    switch($this->input->post('action')){
+      case 'option_edit':
+        $option_value=$this->input->post('option_value');
+        if($this->elenconfig->update_option($this->input->post('option_name'),$option_value)){
+          $out_buffer.=options_table_ajax_update_val($htmlid,$option_value);
+        }else{
+          $out_buffer.=options_table_ajax_update_val_error($htmlid);
+        }
         break;
     }
-		$this->load->view('admin/main',$this->data);
-	}
+
+    $this->output->set_output($out_buffer);
+  }
 }
 ?>

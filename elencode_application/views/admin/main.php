@@ -9,15 +9,19 @@
 * Contact Mic at m [at] micz [dot] it
 *
 */
+echo doctype('xhtml1-trans');
 ?>
 <html>
 <head>
-<title><?=lang('admin_panel_title')?> :: <?=$sitename?></title>
+<title><?=lang('admin_panel_title')?> :: <?=$sitename?><?=$sectiontitle?></title>
+<?=meta('Content-type','text/html; charset=utf-8','equiv');?>
 <link rel="stylesheet" type="text/css" href="<?= base_url()?>graphic/css/admin.css" media="screen" />
+<script type="text/javascript" src="<?=base_url()?>js/jquery.js"></script>
+<script type="text/javascript" src="<?=base_url()?>js/admin.js"></script>
 </head>
 <body>
 <div id="wrapper">
-<h1><?=lang('admin_panel_title')?> :: <?=$sitename?></h1>
+<h1><?=lang('admin_panel_title')?> :: <?=$sitename?><?=$sectiontitle?></h1>
 <div id="left">
 <?$this->load->view('admin/sidebar')?>
 </div><div id="main">
@@ -25,7 +29,7 @@
 </div>
 <div id="footer">
 <?$this->load->view('footer')?>
-<br />Page rendered in {elapsed_time} seconds
+<br /><?=lang('admin_footer_rendered','{elapsed_time}')?>
 </div>
 </div>
 </body>

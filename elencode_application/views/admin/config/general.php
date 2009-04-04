@@ -9,5 +9,5 @@
 * Contact Mic at m [at] micz [dot] it
 *
 */
+echo options_table_ajax($general_data,array(lang('admin_general_name_heading'),lang('admin_general_value_heading')),base_url().'ajax/admin/');
 ?>
-General
