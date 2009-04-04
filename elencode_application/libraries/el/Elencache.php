@@ -46,6 +46,11 @@ class Elencache {
     }
   }
 
+  function clear($filename)
+  {
+    return @unlink($this->cache_dir.$filename);
+  }
+
   function is_cached($filename)
   {
     return file_exists($this->cache_dir.$filename);
