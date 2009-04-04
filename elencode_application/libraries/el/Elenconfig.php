@@ -14,6 +14,8 @@ class Elenconfig {
 
   private $CI;
   private $cachefile='elenconfig.php';
+  private $wp_options=array('blogname');
+  private $wp_options_rename=array('blogname'=>'sitename');
   var $Options;
   
   function __construct($params='')
@@ -40,12 +42,12 @@ class Elenconfig {
     }
 
     //From wp_options
-    if(!$query=$this->CI->db->query('SELECT option_name,option_value FROM wp_options WHERE option_name=\'blogname\''))
+    if(!$query=$this->CI->db->query('SELECT option_name,option_value FROM wp_options WHERE option_name IN (\''.implode('\',\'',$this->wp_options).'\')'))
       return false;
 
 	  foreach ($query->result() as $row)
     {
-      $this->Options[$row->option_name=='blogname'?'sitename':$row->option_name]=$row->option_value;
+      $this->Options[in_array($row->option_name,$this->wp_options)?$this->wp_options_rename[$row->option_name]:$row->option_name]=$row->option_value;
     }
     
     $this->CI->elencache->save($this->cachefile,$this->Options);
@@ -75,7 +77,15 @@ class Elenconfig {
 
   function update_option($option_name,$option_value)
   {
-    if($this->CI->db->query("UPDATE el_config SET value=? WHERE name=? LIMIT 1",array($option_value,$option_name))){
+    if(in_array($option_name,$this->wp_options_rename)){
+      $reverse_rename=array_flip($this->wp_options_rename);
+      $option_name=$reverse_rename[$option_name];
+      $qry='UPDATE wp_options SET option_value=? WHERE option_name=? LIMIT 1';
+    }else{
+      $qry='UPDATE el_config SET value=? WHERE name=? LIMIT 1';
+    }
+
+    if($this->CI->db->query($qry,array($option_value,$option_name))){
       $this->clear_cache();
       return true;
     }else{
