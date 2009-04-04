@@ -13,6 +13,7 @@
 class Elenconfig {
 
   private $CI;
+  private $cachefile='elenconfig.php';
   var $Options;
   
   function __construct($params='')
@@ -25,7 +26,7 @@ class Elenconfig {
 
   private function _load_options()
   {
-    if($this->Options=$this->CI->elencache->load('elenconfig.php')){
+    if($this->Options=$this->CI->elencache->load($this->cachefile)){
       return true;
     }
 
@@ -47,14 +48,14 @@ class Elenconfig {
       $this->Options[$row->option_name=='blogname'?'sitename':$row->option_name]=$row->option_value;
     }
     
-    $this->CI->elencache->save('elenconfig.php',$this->Options);
+    $this->CI->elencache->save($this->cachefile,$this->Options);
     
     return true;
   }
   
   private function _get_option_db($option_name)
   {
-    if(!$query=$this->CI->db->query("SELECT value,name FROM el_config WHERE name='$option_name' LIMIT 1"))
+    if(!$query=$this->CI->db->query("SELECT value,name FROM el_config WHERE name=? LIMIT 1",array($option_name)))
       return false;
 		
 	  $row=$query->row();
@@ -70,6 +71,21 @@ class Elenconfig {
     }else{
       return $this->_get_option_db($option_name);
     }
+  }
+
+  function update_option($option_name,$option_value)
+  {
+    if($this->CI->db->query("UPDATE el_config SET value=? WHERE name=? LIMIT 1",array($option_value,$option_name))){
+      $this->clear_cache();
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  function clear_cache()
+  {
+    $this->CI->elencache->clear($this->cachefile);
   }
 }
 ?>
