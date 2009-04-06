@@ -36,6 +36,7 @@ class Ajax extends Controller {
     }
 
     $this->load->library('el/elenconfig');
+    $this->load->helper('admin_html');
 
     $out_buffer='';
     $htmlid=$this->input->post('htmlid');
