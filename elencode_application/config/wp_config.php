@@ -13,7 +13,7 @@
 //These values must be the same as the ones in the wp-config.php file of the Wordpress installation
 $config['AUTH_KEY']='put your unique phrase here';
 $config['SECURE_AUTH_KEY']='put your unique phrase here';
-$config['LOGGED_IN_KEY']='replace this with your WP key';
+$config['LOGGED_IN_KEY']='put your unique phrase here';
 $config['NONCE_KEY']='put your unique phrase here';
 
 //Do not modify this value
