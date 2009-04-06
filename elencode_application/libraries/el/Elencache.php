@@ -23,7 +23,7 @@ class Elencache {
 
   function save($filename,$values,$arrayname='array_value',$from_object=0)
   {
-      $buffer='<?if (!defined(\'BASEPATH\')) exit(\'No direct script access allowed\');'."\r".'$arrayname='."'$arrayname';\r";
+      $buffer='<?if (!defined(\'BASEPATH\')) exit(\'No direct script access allowed\');'."\r".'$arrayname='."'$arrayname';\r$".$arrayname."=array();\r";
       $filepath=$this->cache_dir.$filename;
       array_walk($values,array(&$this,'_filter_cached_array_save'),$from_object);
       foreach ($values as $key => $value)
@@ -39,6 +39,7 @@ class Elencache {
   {
     if($this->is_cached($filename)){
       require_once($this->cache_dir.$filename);
+      if(!is_array($$arrayname))return false;
       array_walk($$arrayname,array(&$this,'_filter_cached_array_load'),$to_object);
       return $$arrayname;
     }else{
