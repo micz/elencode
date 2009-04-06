@@ -41,4 +41,46 @@ function options_table_ajax_update_val_error($htmlid)
 {
   return "$('#wm$htmlid').hide();$('#w$htmlid').hide();$('#v$htmlid').html('<span class=\"error_msg\">".lang('admin_error')."</span>');$('#v$htmlid').show();";
 }
+
+/*
+ * This function will render an array of objects.
+ * It lets the user edit the existing objects and add a new one.
+ * The objects must have:
+ *  - ID property to identify them (ie on a database)
+ *  - add method
+ *  - update method
+ */
+function table_ajax_from_objs_array($objs_array,$ajax_url)
+{
+  if(!is_array($objs_array))return false;
+  $first_obj=current($objs_array);
+  if(!is_object($first_obj))return false;
+
+  $pid=1;
+  $tr_class=1;
+  $outbuffer='<table class="obj_tb"><tr>';
+  foreach($first_obj as $key=>$value){
+    $outbuffer.='<th>'.$key.'</th>';
+  }
+  $outbuffer.='</tr>';
+  foreach($objs_array as $obj){
+    if(!is_object($obj))break;
+    $outbuffer.='<tr id="tr'.$pid.'" class="r'.$tr_class.'">';
+    $iitem=0;
+    foreach($obj as $var_name => $var_value){
+      if($iitem==0){  //The first object property is ALWAYS the ID and it's our unique key
+        $outbuffer.='<td class="obj_tb_e"><span>'.$var_value.'</span></td>';
+      }else{
+        $outbuffer.='<td class="obj_tb_e"><span id="v'.$pid.'_'.$iitem.'">'.$var_value.'</span>'.($iitem==1?'<img id="w'.$pid.'" class="invis" src="'.base_url().'graphic/img/w.gif"/>':'').'<span id="vm'.$pid.'_'.$iitem.'" class="invis"><input id="item_value_'.$pid.'_'.$iitem.'" value="'.$var_value.'" /></span></td>';
+      }
+      $iitem++;
+    }
+    $outbuffer.='<td class="opt_tb_b"><a id="btne'.$pid.'" onclick="javascript:tbobj_edit_value('.$pid.');">'.lang('admin_btn_edit').'</a><span id="btnm'.$pid.'" class="invis"><a onclick="javascript:tbobj_confirm_mod('.$pid.',\''.$ajax_url.'\',\'action=object_edit&object_type='.get_class($first_obj).'&ID='.$obj->ID.'&obj_values=\'+$(\'#option_value_'.$pid.'\').val());">'.lang('admin_btn_confirm').'</a>&nbsp;<a onclick="javascript:tbobj_cancel_mod('.$pid.');">'.lang('admin_btn_cancel').'</a></span><span class="invis" id="wm'.$pid.'">'.lang('admin_saving').'</span></td>';
+    $outbuffer.='</tr>';
+    $pid++;
+    $tr_class=$tr_class==1?2:1;
+  }
+  $outbuffer.='</table>';
+  return $outbuffer;
+}
 ?>

@@ -33,3 +33,40 @@ function tb_confirm_mod(id,ajax_url,data)
   $('#w'+id).show();
   $.ajax({url:ajax_url,type:'POST',dataType:'script',data:data+'&htmlid='+id});
 }
+
+function tbobj_edit_value(id)
+{
+  var tot=$('#tr'+id+' > td').length;
+  for(i=0;i<tot;i++)
+  {
+    $('#v'+id+'_'+i).hide();
+    $('#vm'+id+'_'+i).show();
+  }
+  $('#btnm'+id).show();
+  $('#btne'+id).hide();
+}
+
+function tbobj_cancel_mod(id)
+{
+  var tot=$('#tr'+id+' > td').length;
+  for(i=0;i<tot;i++)
+  {
+    $('#v'+id+'_'+i).show();
+    $('#vm'+id+'_'+i).hide();
+  }
+  $('#btnm'+id).hide();
+  $('#btne'+id).show();
+}
+
+function tbobj_confirm_mod(id,ajax_url,data)
+{
+  var tot=$('#tr'+id+' > td').length;
+  for(i=0;i<tot;i++)
+  {
+    $('#vm'+id+'_'+i).hide();
+  }
+  $('#btnm'+id).hide();
+  $('#wm'+id).show();
+  $('#w'+id).show();
+  //$.ajax({url:ajax_url,type:'POST',dataType:'script',data:data+'&htmlid='+id});
+}

@@ -13,5 +13,9 @@
 <ul>
   <li><a href="<?=site_url(array('admin'))?>"><?=lang('admin_menu_main')?></a></li>
   <li><a href="<?=site_url(array('admin','config','general'))?>"><?=lang('admin_menu_general_option')?></a></li>
-  <li><a href="<?=site_url(array('admin','config','universe'))?>"><?=lang('admin_menu_universe_option')?></a></li>
+  <li><a href="<?=site_url(array('admin','config','universe'))?>"><?=lang('admin_menu_universe_option')?></a>
+  <ul>
+    <li><a href="<?=site_url(array('admin','config','universe','races'))?>"><?=lang('admin_menu_universe_races_option')?></a>
+    <li><a href="<?=site_url(array('admin','config','universe','classes'))?>"><?=lang('admin_menu_universe_classes_option')?></a>
+  </ul></li>
 </ul>

@@ -9,5 +9,5 @@
 * Contact Mic at m [at] micz [dot] it
 *
 */
+echo table_ajax_from_objs_array($universe_obj_array,base_url().'ajax/admin/');
 ?>
-Universe

@@ -44,8 +44,10 @@ class Admin extends Controller {
         $this->data['general_data']=$this->elenconfig->Options;
         break;
       case 'universe':
+        $this->data['universe_sub_type']=$this->uri->segment(4,'races');
         $this->data['sectiontitle']=' :: '.lang('admin_menu_universe_option');
         $this->load->library('el/universeconfig');
+        $this->data['universe_obj_array']=$this->universeconfig->{ucfirst(strtolower($this->data['universe_sub_type']))};
         break;
     }
 		$this->load->view('admin/main',$this->data);

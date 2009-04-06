@@ -50,6 +50,8 @@ class Ajax extends Controller {
           $out_buffer.=options_table_ajax_update_val_error($htmlid);
         }
         break;
+      case 'object_edit':
+        break;
     }
 
     $this->output->set_output($out_buffer);
