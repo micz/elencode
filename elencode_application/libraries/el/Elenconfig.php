@@ -14,7 +14,6 @@ class Elenconfig {
 
   private $CI;
   private $cachefile='elenconfig.php';
-  private $wp_options=array('blogname');
   private $wp_options_rename=array('blogname'=>'sitename');
   var $Options;
   
@@ -41,13 +40,15 @@ class Elenconfig {
       $this->Options[$row->name]=$row->value;
     }
 
+    $reverse_rename=array_flip($this->wp_options_rename);
+
     //From wp_options
-    if(!$query=$this->CI->db->query('SELECT option_name,option_value FROM wp_options WHERE option_name IN (\''.implode('\',\'',$this->wp_options).'\')'))
+    if(!$query=$this->CI->db->query('SELECT option_name,option_value FROM wp_options WHERE option_name IN (\''.implode('\',\'',$reverse_rename).'\')'))
       return false;
 
 	  foreach ($query->result() as $row)
     {
-      $this->Options[in_array($row->option_name,$this->wp_options)?$this->wp_options_rename[$row->option_name]:$row->option_name]=$row->option_value;
+      $this->Options[in_array($row->option_name,$reverse_rename)?$this->wp_options_rename[$row->option_name]:$row->option_name]=$row->option_value;
     }
     
     $this->CI->elencache->save($this->cachefile,$this->Options);
