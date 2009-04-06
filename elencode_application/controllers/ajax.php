@@ -10,6 +10,8 @@
 *
 */
 
+define('DOING_AJAX',1);
+
 class Ajax extends Controller {
 
   var $current_user;
