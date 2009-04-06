@@ -18,6 +18,7 @@ class Admin extends Controller {
 	function __construct()
 	{
 		parent::Controller();
+		$this->load->helper('admin_html');
     $this->load->library('el/elenconfig',array('autoload'=>1));
     $this->lang->load('admin',$this->elenconfig->Options['language']);
     $this->current_user=$this->wpauth->get_user();
