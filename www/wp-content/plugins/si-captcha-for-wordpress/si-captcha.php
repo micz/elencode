@@ -3,7 +3,7 @@
 Plugin Name: SI CAPTCHA
 Plugin URI: http://www.642weather.com/weather/scripts-wordpress-captcha.php
 Description: A CAPTCHA to protect comment posts and or registrations in WordPress
-Version: 1.6
+Version: 1.6.1
 Author: Mike Challis
 Author URI: http://www.642weather.com/weather/scripts.php
 */

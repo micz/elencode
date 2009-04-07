@@ -137,6 +137,7 @@ At this point it would be useful to read [Installing WordPress in Your Language]
 
 The following translations are included in the download zip file:
 
+* Belorussian (by_BY) - Translated by [Marcis Gasuns](http://www.comfi.com/)
 * Danish (da_DK) - Translated by [Parry](http://www.detheltnyestore.dk/)
 * German (de_DE) - Translated by [Sebastian Kreideweiﬂ](http://www.cps-it.de/)
 * Italian (it_IT) - Translated by [Gianni Diurno](http://gidibao.net/ "Gianni Diurno")
@@ -159,6 +160,13 @@ Of course! It will be very gratefully received. Please read [Translating WordPre
 * If you have any questions, feel free to email me also. Thanks!
 
 == Version History ==
+
+rel 1.6.1 (06 Apr 2009)
+-------
+- Added Belorussian Language (by_BY) - Translated by [Marcis Gasuns](http://www.comfi.com/)
+- Fixed audio CAPTCHA link URL, it did not work properly on Safari 3.2.1 (Mac OS X 10.5.6).
+- Note: the proper way the audio CAPTCHA is supposed to work is like this: a dialog pops up, You have chosen to open:
+secureimage.wav What should (Firefox, Safari, IE, etc.) do with this file? Open with: (Choose) OR Save File. Be sure to select open, then it will play in WMP, Quicktime, Itunes, etc.
 
 rel 1.6 (23 Mar 2009)
 -------
