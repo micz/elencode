@@ -17,5 +17,6 @@
   <ul>
     <li><a href="<?=site_url(array('admin','config','universe','races'))?>"><?=lang('admin_menu_universe_races_option')?></a>
     <li><a href="<?=site_url(array('admin','config','universe','classes'))?>"><?=lang('admin_menu_universe_classes_option')?></a>
+    <li><a href="<?=site_url(array('admin','config','universe','skills'))?>"><?=lang('admin_menu_universe_skills_option')?></a>
   </ul></li>
 </ul>
