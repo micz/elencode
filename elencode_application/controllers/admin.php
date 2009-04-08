@@ -10,18 +10,14 @@
 *
 */
 
-class Admin extends Controller {
+class Admin extends EL_Controller {
 
-  var $current_user;
   private $data;
 
 	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 		$this->load->helper('admin_html');
-    $this->load->library('el/elenconfig',array('autoload'=>1));
-    $this->lang->load('admin',$this->elenconfig->Options['language']);
-    $this->current_user=$this->wpauth->get_user();
     if(!$this->current_user->is_admin()) redirect('','location',301);
     $this->data['userdata']=$this->current_user;
     $this->data['sitename']=$this->elenconfig->Options['sitename'];

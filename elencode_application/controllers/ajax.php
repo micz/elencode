@@ -12,13 +12,11 @@
 
 define('DOING_AJAX',1);
 
-class Ajax extends Controller {
-
-  var $current_user;
+class Ajax extends EL_Controller {
 
 	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
     $this->current_user=$this->wpauth->get_user();
     $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
     $this->output->set_header("Cache-Control: post-check=0, pre-check=0");

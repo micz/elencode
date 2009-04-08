@@ -10,19 +10,17 @@
 *
 */
 
-class Main extends EL_Controller {
+class EL_Controller extends Controller
+{
+  var $current_user;
 
-	function __construct()
-	{
-		parent::__construct();
-	}
-	
-	function index()
-	{
-    $data['userdata']=$this->wpauth->get_user();
-		$this->load->view('main',$data);
-	}
+  function  __construct()
+  {
+    parent::__construct();
+    $this->load->library('el/elenconfig',array('autoload'=>1));
+    $this->lang->load('admin',$this->elenconfig->Options['language']);
+    $this->current_user=$this->wpauth->get_user();
+  }
 }
 
-/* End of file welcome.php */
-/* Location: ./system/application/controllers/welcome.php */
+?>
