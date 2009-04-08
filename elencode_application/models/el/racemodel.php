@@ -12,6 +12,8 @@
 
 class Racemodel extends Model {
 
+    private $cachefile='racess.php';
+
     function __construct()
     {
         parent::Model();
@@ -20,7 +22,7 @@ class Racemodel extends Model {
 
     function get_all()
     {
-      if($outbuffer=$this->elencache->load('races.php',1)){
+      if($outbuffer=$this->elencache->load($this->cachefile,1)){
         return $outbuffer;
       }else{
         $outbuffer=array();
@@ -34,9 +36,34 @@ class Racemodel extends Model {
         $outbuffer[$row->id]=new Race($row);
       }
 
-      $this->elencache->save('races.php',$outbuffer,'races_values',1);
+      $this->elencache->save($this->cachefile,$outbuffer,'races_values',1);
 
       return $outbuffer;
+    }
+
+    function clear_cache()
+    {
+      $this->elencache->clear($this->cachefile);
+    }
+
+    function update(Race $item)
+    {
+      $data_array=array();
+      $update_str='';
+      foreach($item as $var_name => $var_value){
+        if($var_name!='ID'){
+          array_push($data_array,$var_value);
+          $update_str.=$var_name.'=?,';
+        }
+      }
+      $update_str=trim($update_str,',');
+      array_push($data_array,$item->ID);
+      if($this->db->query('UPDATE el_races SET '.$update_str.' WHERE ID=?',$data_array)){
+        $this->clear_cache();
+        return true;
+      }else{
+        return false;
+      }
     }
 }
 
@@ -71,5 +98,18 @@ class Race {
       }
     }
 
+    static function get_from_serialized_data($ID,$serdata)
+    {
+      $outobj=new Race();
+      $outobj->ID=$ID;
+      $arrdata=unserialize($serdata);
+      $outobj->male_name=$arrdata[0];
+      $outobj->male_name_art=$arrdata[1];
+      $outobj->female_name=$arrdata[2];
+      $outobj->female_name_art=$arrdata[3];
+      $outobj->subraces_male=$arrdata[4];
+      $outobj->subraces_female=$arrdata[5];
+      return $outobj;
+    }
 }
 ?>

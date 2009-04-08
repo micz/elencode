@@ -12,6 +12,8 @@
 
 class Skillmodel extends Model {
 
+    private $cachefile='skills.php';
+
     function __construct()
     {
         parent::Model();
@@ -20,7 +22,7 @@ class Skillmodel extends Model {
 
     function get_all()
     {
-      if($outbuffer=$this->elencache->load('skills.php',1)){
+      if($outbuffer=$this->elencache->load($this->cachefile,1)){
         return $outbuffer;
       }else{
         $outbuffer=array();
@@ -34,9 +36,34 @@ class Skillmodel extends Model {
         $outbuffer[$row->id]=new Skill($row);
       }
 
-      $this->elencache->save('skills.php',$outbuffer,'skills_values',1);
+      $this->elencache->save($this->cachefile,$outbuffer,'skills_values',1);
 
       return $outbuffer;
+    }
+
+    function clear_cache()
+    {
+      $this->elencache->clear($this->cachefile);
+    }
+
+    function update(Skill $item)
+    {
+      $data_array=array();
+      $update_str='';
+      foreach($item as $var_name => $var_value){
+        if($var_name!='ID'){
+          array_push($data_array,$var_value);
+          $update_str.=$var_name.'=?,';
+        }
+      }
+      $update_str=trim($update_str,',');
+      array_push($data_array,$item->ID);
+      if($this->db->query('UPDATE el_skills SET '.$update_str.' WHERE ID=?',$data_array)){
+        $this->clear_cache();
+        return true;
+      }else{
+        return false;
+      }
     }
 }
 
@@ -59,5 +86,14 @@ class Skill {
       }
     }
 
+    static function get_from_serialized_data($ID,$serdata)
+    {
+      $outobj=new Skill();
+      $outobj->ID=$ID;
+      $arrdata=unserialize($serdata);
+      $outobj->name=$arrdata[0];
+      $outobj->ability_id=intval($arrdata[1]);
+      return $outobj;
+    }
 }
 ?>
