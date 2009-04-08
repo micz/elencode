@@ -24,7 +24,7 @@ class Ajax extends Controller {
     $this->output->set_header("Cache-Control: post-check=0, pre-check=0");
     $this->output->set_header("Pragma: no-cache");
 	}
-	
+
 	function index()
 	{
     $this->output->set_output('');
@@ -53,6 +53,19 @@ class Ajax extends Controller {
         }
         break;
       case 'object_edit':
+        $obj_id=$this->input->post('ID');
+        $obj_values=$this->input->post('obj_values');
+        $obj_type=$this->input->post('obj_type');
+        //TODO Add security check -> no serialized objects in $obj_value
+        $this->load->model('el/'.strtolower($obj_type).'model');
+        $item=call_user_func($obj_type.'::get_from_serialized_data',$obj_id,$obj_values);
+        //if(call_user_func(array(&$this,'_update_model'),$obj_type,$item))
+        if($this->{strtolower($obj_type).'model'}->{'update'}($item))
+        {
+          $out_buffer.='ok';
+        }else{
+          $out_buffer.='error';
+        }
         break;
     }
 

@@ -75,7 +75,7 @@ function table_ajax_from_objs_array($objs_array,$ajax_url)
       }
       $iitem++;
     }
-    $outbuffer.='<td class="opt_tb_b"><a id="btne'.$pid.'" onclick="javascript:tbobj_edit_value('.$pid.');">'.lang('admin_btn_edit').'</a><span id="btnm'.$pid.'" class="invis"><a onclick="javascript:tbobj_confirm_mod('.$pid.',\''.$ajax_url.'\',\'action=object_edit&object_type='.get_class($first_obj).'&ID='.$obj->ID.'&obj_values=\'+tbobj_get_mod_data('.$pid.'));">'.lang('admin_btn_confirm').'</a>&nbsp;<a onclick="javascript:tbobj_cancel_mod('.$pid.');">'.lang('admin_btn_cancel').'</a></span><span class="invis" id="wm'.$pid.'">'.lang('admin_saving').'</span></td>';
+    $outbuffer.='<td class="opt_tb_b"><a id="btne'.$pid.'" onclick="javascript:tbobj_edit_value('.$pid.');">'.lang('admin_btn_edit').'</a><span id="btnm'.$pid.'" class="invis"><a onclick="javascript:tbobj_confirm_mod('.$pid.',\''.$ajax_url.'\',\'action=object_edit&obj_type='.get_class($first_obj).'&ID='.$obj->ID.'&obj_values=\'+tbobj_get_mod_data('.$pid.'));">'.lang('admin_btn_confirm').'</a>&nbsp;<a onclick="javascript:tbobj_cancel_mod('.$pid.');">'.lang('admin_btn_cancel').'</a></span><span class="invis" id="wm'.$pid.'">'.lang('admin_saving').'</span></td>';
     $outbuffer.='</tr>';
     $pid++;
     $tr_class=$tr_class==1?2:1;
