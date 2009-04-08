@@ -83,4 +83,23 @@ function table_ajax_from_objs_array($objs_array,$ajax_url)
   $outbuffer.='</table>';
   return $outbuffer;
 }
+
+function table_ajax_from_objs_array_update_val($htmlid,$obj_values)
+{
+  $data_array=unserialize($obj_values);
+  $ii=1;
+  $js_str='';
+  foreach ($data_array as $val){
+    $val=addslashes($val);
+    $js_str.="$('#v$htmlid"."_$ii').html('$val');";
+    $ii++;
+  }
+  return $js_str."tbobj_cancel_mod($htmlid);$('#w$htmlid').hide();$('#wm$htmlid').hide();";
+  //return "$('#wm$htmlid').hide();$('#w$htmlid').hide();$('#v$htmlid').html('$option_value');$('#option_value_$htmlid').val('$option_value');$('#btne$htmlid').show();$('#v$htmlid').show();";
+}
+
+function table_ajax_from_objs_array_update_val_error($htmlid)
+{
+  return "tbobj_cancel_mod($htmlid);$('#btne$htmlid').hide();$('#w$htmlid').hide();$('#wm$htmlid').html('<span class=\"error_msg\">".lang('admin_error')."</span>');";
+}
 ?>

@@ -23,6 +23,7 @@ class Ajax extends Controller {
     $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
     $this->output->set_header("Cache-Control: post-check=0, pre-check=0");
     $this->output->set_header("Pragma: no-cache");
+    $this->load->library('el/elenconfig',array('autoload'=>1));
 	}
 
 	function index()
@@ -32,6 +33,8 @@ class Ajax extends Controller {
 
   function admin()
 	{
+    $this->lang->load('admin',$this->elenconfig->Options['language']);
+
     if(!$this->current_user->is_admin()){
       $this->output->set_status_header('401');
       $this->output->set_output('');
@@ -56,15 +59,18 @@ class Ajax extends Controller {
         $obj_id=$this->input->post('ID');
         $obj_values=$this->input->post('obj_values');
         $obj_type=$this->input->post('obj_type');
-        //TODO Add security check -> no serialized objects in $obj_value
+        // Security check -> no serialized objects in $obj_value
+        if(serialized_has_objects($obj_values)){
+          $out_buffer.=table_ajax_from_objs_array_update_val_error($htmlid);
+          break;
+        }
         $this->load->model('el/'.strtolower($obj_type).'model');
         $item=call_user_func($obj_type.'::get_from_serialized_data',$obj_id,$obj_values);
-        //if(call_user_func(array(&$this,'_update_model'),$obj_type,$item))
         if($this->{strtolower($obj_type).'model'}->{'update'}($item))
         {
-          $out_buffer.='ok';
+          $out_buffer.=table_ajax_from_objs_array_update_val($htmlid,$obj_values);
         }else{
-          $out_buffer.='error';
+          $out_buffer.=table_ajax_from_objs_array_update_val_error($htmlid);
         }
         break;
     }
