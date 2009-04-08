@@ -51,7 +51,7 @@ $autoload['libraries'] = array('wpauth','database','language');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url','language','html');
+$autoload['helper'] = array('common','url','language','html');
 
 
 /*
