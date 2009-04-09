@@ -14,6 +14,6 @@ $lang['admin_panel_title']='Admin Panel';
 $lang['admin_menu_general_option']='General Options';
 $lang['admin_menu_universe_option']='Universe Options';
 $lang['admin_footer_rendered']='Page rendered in %s seconds';
-$lang['admin_menu_allowed_classes']='Races-Classes';
-$lang['admin_title_allowed_classes']='Allowed Classes for each Race';
+$lang['admin_menu_races_classes']='Races-Classes';
+$lang['admin_title_races_classes']='Allowed Classes for each Race';
 ?>

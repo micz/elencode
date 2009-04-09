@@ -19,6 +19,6 @@
     <li><a href="<?=site_url(array('admin','config','universe','classes'))?>"><?=lang('common_classes')?></a></li>
     <li><a href="<?=site_url(array('admin','config','universe','abilities'))?>"><?=lang('common_abilities')?></a></li>
     <li><a href="<?=site_url(array('admin','config','universe','skills'))?>"><?=lang('common_skills')?></a></li>
-    <li><a href="<?=site_url(array('admin','config','universe','var','allowed-classes'))?>"><?=lang('admin_menu_allowed_classes')?></a></li>
+    <li><a href="<?=site_url(array('admin','config','universe','var','races-classes'))?>"><?=lang('admin_menu_races_classes')?></a></li>
   </ul></li>
 </ul>
