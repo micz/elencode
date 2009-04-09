@@ -10,10 +10,14 @@
 *
 */
 
-$lang['admin_panel_title']='Admin Panel';
-$lang['admin_menu_general_option']='General Options';
-$lang['admin_menu_universe_option']='Universe Options';
-$lang['admin_footer_rendered']='Page rendered in %s seconds';
-$lang['admin_general_name_heading']='Name';
-$lang['admin_general_value_heading']='Value';
+$lang['common_menu_main']='Main';
+$lang['common_races']='Races';
+$lang['common_classes']='Classes';
+$lang['common_skills']='Skills';
+$lang['common_abilities']='Abilities';
+$lang['common_btn_edit']='Edit';
+$lang['common_btn_confirm']='Confirm';
+$lang['common_btn_cancel']='Cancel';
+$lang['common_saving']='Saving...';
+$lang['common_error']='Error!';
 ?>

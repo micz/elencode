@@ -23,7 +23,7 @@ function options_table_ajax($data,$headings,$ajax_url)
   $outbuffer.='</tr>';
   foreach($data as $key=>$value){
     $outbuffer.='<tr id="tr'.$pid.'" class="r'.$tr_class.'">';
-    $outbuffer.='<td class="opt_tb_n">'.$key.'</td><td class="opt_tb_v"><span id="v'.$pid.'">'.$value.'</span><span id="vm'.$pid.'" class="invis"><input id="option_value_'.$pid.'" value="'.$value.'" /></span><img id="w'.$pid.'" class="invis" src="'.base_url().'graphic/img/w.gif"/></td><td class="opt_tb_b"><a id="btne'.$pid.'" onclick="javascript:tb_edit_value('.$pid.');">'.lang('admin_btn_edit').'</a><span id="btnm'.$pid.'" class="invis"><a onclick="javascript:tb_confirm_mod('.$pid.',\''.$ajax_url.'\',\'action=option_edit&option_name='.$key.'&option_value=\'+$(\'#option_value_'.$pid.'\').val());">'.lang('admin_btn_confirm').'</a>&nbsp;<a onclick="javascript:tb_cancel_mod('.$pid.');">'.lang('admin_btn_cancel').'</a></span><span class="invis" id="wm'.$pid.'">'.lang('admin_saving').'</span></td>';
+    $outbuffer.='<td class="opt_tb_n">'.$key.'</td><td class="opt_tb_v"><span id="v'.$pid.'">'.$value.'</span><span id="vm'.$pid.'" class="invis"><input id="option_value_'.$pid.'" value="'.$value.'" /></span><img id="w'.$pid.'" class="invis" src="'.base_url().'graphic/img/w.gif"/></td><td class="opt_tb_b"><a id="btne'.$pid.'" onclick="javascript:tb_edit_value('.$pid.');">'.lang('common_btn_edit').'</a><span id="btnm'.$pid.'" class="invis"><a onclick="javascript:tb_confirm_mod('.$pid.',\''.$ajax_url.'\',\'action=option_edit&option_name='.$key.'&option_value=\'+$(\'#option_value_'.$pid.'\').val());">'.lang('common_btn_confirm').'</a>&nbsp;<a onclick="javascript:tb_cancel_mod('.$pid.');">'.lang('common_btn_cancel').'</a></span><span class="invis" id="wm'.$pid.'">'.lang('common_saving').'</span></td>';
     $outbuffer.='</tr>';
     $pid++;
     $tr_class=$tr_class==1?2:1;
@@ -39,7 +39,7 @@ function options_table_ajax_update_val($htmlid,$option_value)
 
 function options_table_ajax_update_val_error($htmlid)
 {
-  return "$('#wm$htmlid').hide();$('#w$htmlid').hide();$('#v$htmlid').html('<span class=\"error_msg\">".lang('admin_error')."</span>');$('#v$htmlid').show();";
+  return "$('#wm$htmlid').hide();$('#w$htmlid').hide();$('#v$htmlid').html('<span class=\"error_msg\">".lang('common_error')."</span>');$('#v$htmlid').show();";
 }
 
 /*
@@ -75,7 +75,7 @@ function table_ajax_from_objs_array($objs_array,$ajax_url)
       }
       $iitem++;
     }
-    $outbuffer.='<td class="opt_tb_b"><a id="btne'.$pid.'" onclick="javascript:tbobj_edit_value('.$pid.');">'.lang('admin_btn_edit').'</a><span id="btnm'.$pid.'" class="invis"><a onclick="javascript:tbobj_confirm_mod('.$pid.',\''.$ajax_url.'\',\'action=object_edit&obj_type='.get_class($first_obj).'&ID='.$obj->ID.'&obj_values=\'+tbobj_get_mod_data('.$pid.'));">'.lang('admin_btn_confirm').'</a>&nbsp;<a onclick="javascript:tbobj_cancel_mod('.$pid.');">'.lang('admin_btn_cancel').'</a></span><span class="invis" id="wm'.$pid.'">'.lang('admin_saving').'</span></td>';
+    $outbuffer.='<td class="opt_tb_b"><a id="btne'.$pid.'" onclick="javascript:tbobj_edit_value('.$pid.');">'.lang('common_btn_edit').'</a><span id="btnm'.$pid.'" class="invis"><a onclick="javascript:tbobj_confirm_mod('.$pid.',\''.$ajax_url.'\',\'action=object_edit&obj_type='.get_class($first_obj).'&ID='.$obj->ID.'&obj_values=\'+tbobj_get_mod_data('.$pid.'));">'.lang('common_btn_confirm').'</a>&nbsp;<a onclick="javascript:tbobj_cancel_mod('.$pid.');">'.lang('common_btn_cancel').'</a></span><span class="invis" id="wm'.$pid.'">'.lang('common_saving').'</span></td>';
     $outbuffer.='</tr>';
     $pid++;
     $tr_class=$tr_class==1?2:1;
@@ -100,6 +100,6 @@ function table_ajax_from_objs_array_update_val($htmlid,$obj_values)
 
 function table_ajax_from_objs_array_update_val_error($htmlid)
 {
-  return "tbobj_cancel_mod($htmlid);$('#btne$htmlid').hide();$('#w$htmlid').hide();$('#wm$htmlid').html('<span class=\"error_msg\">".lang('admin_error')."</span>');";
+  return "tbobj_cancel_mod($htmlid);$('#btne$htmlid').hide();$('#w$htmlid').hide();$('#wm$htmlid').html('<span class=\"error_msg\">".lang('common_error')."</span>');";
 }
 ?>

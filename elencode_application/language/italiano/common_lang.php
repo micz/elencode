@@ -10,10 +10,5 @@
 *
 */
 
-$lang['admin_panel_title']='Admin Panel';
-$lang['admin_menu_general_option']='General Options';
-$lang['admin_menu_universe_option']='Universe Options';
-$lang['admin_footer_rendered']='Page rendered in %s seconds';
-$lang['admin_general_name_heading']='Name';
-$lang['admin_general_value_heading']='Value';
+$lang['common_menu_main']='Principale';
 ?>
