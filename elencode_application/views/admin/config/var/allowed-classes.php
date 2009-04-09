@@ -9,4 +9,7 @@
 * Contact Mic at m [at] micz [dot] it
 *
 */
-$this->load->view('admin/config/'.$form_type);?>
+$races=$universe->Races;
+$classes=$universe->Classes;
+?>
+<h2><?=lang('admin_title_allowed_classes')?></h2>

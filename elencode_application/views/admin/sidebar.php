@@ -15,9 +15,10 @@
   <li><a href="<?=site_url(array('admin','config','general'))?>"><?=lang('admin_menu_general_option')?></a></li>
   <li><a href="<?=site_url(array('admin','config','universe'))?>"><?=lang('admin_menu_universe_option')?></a>
   <ul>
-    <li><a href="<?=site_url(array('admin','config','universe','races'))?>"><?=lang('common_races')?></a>
-    <li><a href="<?=site_url(array('admin','config','universe','classes'))?>"><?=lang('common_classes')?></a>
-    <li><a href="<?=site_url(array('admin','config','universe','abilities'))?>"><?=lang('common_abilities')?></a>
-    <li><a href="<?=site_url(array('admin','config','universe','skills'))?>"><?=lang('common_skills')?></a>
+    <li><a href="<?=site_url(array('admin','config','universe','races'))?>"><?=lang('common_races')?></a></li>
+    <li><a href="<?=site_url(array('admin','config','universe','classes'))?>"><?=lang('common_classes')?></a></li>
+    <li><a href="<?=site_url(array('admin','config','universe','abilities'))?>"><?=lang('common_abilities')?></a></li>
+    <li><a href="<?=site_url(array('admin','config','universe','skills'))?>"><?=lang('common_skills')?></a></li>
+    <li><a href="<?=site_url(array('admin','config','universe','var','allowed-classes'))?>"><?=lang('admin_menu_allowed_classes')?></a></li>
   </ul></li>
 </ul>

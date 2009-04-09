@@ -9,5 +9,10 @@
 * Contact Mic at m [at] micz [dot] it
 *
 */
-echo table_ajax_from_objs_array($universe_obj_array,base_url().'ajax/admin/');
+if($universe_sub_type!='var'){
+  echo '<h2>'.ucfirst($universe_sub_type).'</h2>';
+  echo table_ajax_from_objs_array($universe_obj_array,base_url().'ajax/admin/');
+}else{
+  $this->load->view('admin/config/var/'.$universe_var_type);
+}
 ?>

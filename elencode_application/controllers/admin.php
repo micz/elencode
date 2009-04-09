@@ -43,7 +43,12 @@ class Admin extends EL_Controller {
         $this->data['universe_sub_type']=$this->uri->segment(4,'races');
         $this->data['sectiontitle']=' :: '.lang('admin_menu_universe_option');
         $this->load->library('el/universeconfig');
-        $this->data['universe_obj_array']=$this->universeconfig->{ucfirst(strtolower($this->data['universe_sub_type']))};
+        if($this->data['universe_sub_type']=='var'){
+          $this->data['universe_var_type']=$this->uri->segment(5,'allowed-classes');
+          $this->data['universe']=$this->universeconfig;
+        }else{
+          $this->data['universe_obj_array']=$this->universeconfig->{ucfirst(strtolower($this->data['universe_sub_type']))};
+        }
         break;
     }
 		$this->load->view('admin/main',$this->data);
