@@ -17,6 +17,7 @@ $lang['admin_menu_universe_option']='Universe Options';
 $lang['admin_menu_universe_races_option']='Races';
 $lang['admin_menu_universe_classes_option']='Classes';
 $lang['admin_menu_universe_skills_option']='Skills';
+$lang['admin_menu_universe_abilities_option']='Abilities';
 $lang['admin_footer_rendered']='Page rendered in %s seconds';
 $lang['admin_general_name_heading']='Name';
 $lang['admin_general_value_heading']='Value';

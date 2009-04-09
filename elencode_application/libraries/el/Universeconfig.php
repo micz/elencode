@@ -27,6 +27,7 @@ class Universeconfig {
     $this->CI->load->model('el/racemodel');
     $this->CI->load->model('el/eclassmodel');
     $this->CI->load->model('el/skillmodel');
+    $this->CI->load->model('el/abilitymodel');
     $this->_load_all();
   }
 
@@ -66,23 +67,7 @@ class Universeconfig {
 
   private function _load_abilities()
   {
-    if($this->Abilities=$this->CI->elencache->load('abilities.php')){
-      return true;
-    }else{
-      $this->Abilities=array();
-    }
-
-    if(!$query=$this->CI->db->query('SELECT * FROM el_abilities ORDER BY id ASC'))
-      return false;
-
-	  foreach ($query->result() as $row)
-    {
-      $this->Abilities[$row->id]=$row->name;
-    }
-
-    $this->CI->elencache->save('abilities.php',$this->Abilities,'abilities_values');
-
-    return true;
+    $this->Abilities=$this->CI->abilitymodel->get_all();
   }
 
   private function _load_classes()
