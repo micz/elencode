@@ -12,7 +12,7 @@
 
 class Racemodel extends Model {
 
-    private $cachefile='racess.php';
+    private $cachefile='races.php';
 
     function __construct()
     {
