@@ -18,6 +18,7 @@ class Universeconfig {
   var $Classes;
   var $Races;
   var $Options;
+  private $races_classes_array;
   
   function __construct()
   {
@@ -29,6 +30,7 @@ class Universeconfig {
     $this->CI->load->model('el/skillmodel');
     $this->CI->load->model('el/abilitymodel');
     $this->_load_all();
+    $races_classes_array='';
   }
 
   private function _load_all()
@@ -78,6 +80,20 @@ class Universeconfig {
   private function _load_races()
   {
     $this->Races=$this->CI->racemodel->get_all();
+  }
+
+  function get_race_class($race_id,$class_id)
+  {
+    if($this->races_classes_array=='')$this->races_classes_array=unserialize($this->Options['race_class']);
+
+    if(!in_array($race_id,$this->races_classes_array)){
+      $this->races_classes_array[$race_id]=array();
+    }
+    if(!in_array($class_id,$this->races_classes_array[$race_id])){
+      $this->races_classes_array[$race_id][$class_id]=0;
+    }
+
+    return $this->races_classes_array[$race_id][$class_id];
   }
 }
 ?>
