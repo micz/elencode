@@ -19,6 +19,7 @@ $lang['common_btn_edit']='Edit';
 $lang['common_btn_confirm']='Confirm';
 $lang['common_btn_cancel']='Cancel';
 $lang['common_saving']='Saving...';
+$lang['common_save']='Save';
 $lang['common_error']='Error!';
 $lang['common_name']='Name';
 $lang['common_value']='Value';
