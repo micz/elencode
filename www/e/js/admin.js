@@ -82,6 +82,28 @@ function tbobj_get_mod_data(id)
   return js_serialize(out);
 }
 
+function rcsave(ajax_url)
+{
+  $('#savebtn').attr('disabled','disabled');
+  $('#svmsg').show();
+  var data_array=new Array();
+  var tot_classes=$('#rctable > tbody > tr').length-2;
+  var tot_races=($('#rctable > tbody > tr > td').length-1)/tot_classes;
+
+  data_array.push(0);
+  for(ir=1;ir<=tot_races;ir++)
+  {
+    data_array.push(new Array());
+    data_array[ir].push(0);
+    for(ic=1;ic<=tot_classes;ic++)
+    {
+      data_array[ir].push($('#r'+ir+'c'+ic).attr('checked'));
+    }
+  }
+ var data_array_ser=js_serialize(data_array);
+  $.ajax({url:ajax_url,type:'POST',dataType:'script',data:'action=rcsave&data_array_ser='+data_array_ser});
+}
+
 function js_serialize(mixed_value)
 {
 // Returns a string representation of variable (which can later be unserialized)

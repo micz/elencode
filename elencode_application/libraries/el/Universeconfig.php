@@ -19,6 +19,7 @@ class Universeconfig {
   var $Races;
   var $Options;
   private $races_classes_array;
+  private $options_cachefile='universe_opt.php';
   
   function __construct()
   {
@@ -44,7 +45,7 @@ class Universeconfig {
 
   private function _load_options()
   {
-    if($this->Options=$this->CI->elencache->load('universe_opt.php')){
+    if($this->Options=$this->CI->elencache->load($this->options_cachefile)){
       return true;
     }else{
       $this->Options=array();
@@ -58,7 +59,7 @@ class Universeconfig {
       $this->Options[$row->name]=$row->value;
     }
 
-    $this->CI->elencache->save('universe_opt.php',$this->Options,'unicache');
+    $this->CI->elencache->save($this->options_cachefile,$this->Options,'unicache');
     return true;
   }
 
@@ -84,16 +85,33 @@ class Universeconfig {
 
   function get_race_class($race_id,$class_id)
   {
-    if($this->races_classes_array=='')$this->races_classes_array=unserialize($this->Options['race_class']);
+    if(!is_array($this->races_classes_array))$this->races_classes_array=unserialize($this->Options['race_class']);
 
-    if(!in_array($race_id,$this->races_classes_array)){
+    if(!key_exists($race_id,$this->races_classes_array)){
       $this->races_classes_array[$race_id]=array();
     }
-    if(!in_array($class_id,$this->races_classes_array[$race_id])){
+    if(!key_exists($class_id,$this->races_classes_array[$race_id])){
       $this->races_classes_array[$race_id][$class_id]=0;
     }
 
     return $this->races_classes_array[$race_id][$class_id];
+  }
+
+  function save_option($option_name,$option_value)
+  {
+    $qry='UPDATE el_config SET value=? WHERE name=? LIMIT 1';
+    
+    if($this->CI->db->query($qry,array($option_value,$option_name))){
+      $this->clear_option_cache();
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  function clear_option_cache()
+  {
+    $this->CI->elencache->clear($this->options_cachefile);
   }
 }
 ?>

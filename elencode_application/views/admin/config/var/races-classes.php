@@ -10,7 +10,7 @@
 *
 */
 
-$outbuffer='<table><tr><th>&nbsp;</th>';
+$outbuffer='<table id="rctable"><tbody><tr><th>&nbsp;</th>';
 
 $colspan_l=1;
 foreach($universe->Races as $race){
@@ -22,11 +22,11 @@ $outbuffer.='</tr>';
 foreach($universe->Classes as $eclass){
   $outbuffer.='<tr><th>'.$eclass->male_name.'</th>';
   foreach($universe->Races as $race){
-    $outbuffer.='<td><input onchange="javascript:$(\'#savebtn\').attr(\'disabled\',\'\');" type="checkbox" id="r'.$race->ID.'c'.$eclass->ID.'" value="1"'.($universe->get_race_class($race->ID,$eclass->ID)==0?'':'checked="checked"').'/></td>';
+    $outbuffer.='<td><input onchange="javascript:$(\'#savebtn\').attr(\'disabled\',\'\');" type="checkbox" id="r'.$race->ID.'c'.$eclass->ID.'" value="1"'.($universe->get_race_class($race->ID,$eclass->ID)==0?'':' checked="checked"').'/></td>';
   }
   $outbuffer.='</tr>';
 }
 
-$outbuffer.='<tr><td colspan="'.$colspan_l.'" align="right"><input id="savebtn" type="button" value="'.lang('common_save').'" disabled="disabled"></td></tr></table>';
+$outbuffer.='<tr><td colspan="'.$colspan_l.'" align="right"><input id="savebtn" type="button" value="'.lang('common_save').'" disabled="disabled" onclick="javascript:rcsave(\''.base_url().'ajax/admin/\');"><br/><span class="invis" id="svmsg">'.lang('common_saving').'</span></td></tr></tbody></table>';
 echo $outbuffer;
 ?>

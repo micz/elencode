@@ -38,7 +38,7 @@ class Ajax extends EL_Controller {
       $this->output->set_output('');
     }
 
-    $this->load->library('el/elenconfig');
+    //$this->load->library('el/elenconfig');
     $this->load->helper('admin_html');
 
     $out_buffer='';
@@ -71,6 +71,23 @@ class Ajax extends EL_Controller {
           $out_buffer.=table_ajax_from_objs_array_update_val_error($htmlid);
         }
         break;
+      case 'rcsave':  //Save the Races - Classes matrix
+        $data_array_ser=$this->input->post('data_array_ser');
+        $data_array=unserialize($data_array_ser);
+        //remove 0 index elements inserted by the js script
+        unset($data_array[0]);
+        foreach($data_array as $index => $array_item){
+          foreach($array_item as $index2 => $item){
+            if($index2==0)unset($data_array[$index][$index2]);
+          }
+        }
+        $data_array_ser=serialize($data_array);
+        $this->load->library('el/universeconfig');
+        if($this->universeconfig->save_option('race_class',$data_array_ser)){
+          $out_buffer.='$(\'#svmsg\').hide();$(\'#svmsg\').html(\''.lang('common_save').'\');';
+        }else{
+          $out_buffer.="$('#svmsg').html('<span class=\"error_msg\">".lang('common_error')."</span>');$(\'#savebtn\').attr(\'disabled\',\'\');";
+        }
     }
 
     $this->output->set_output($out_buffer);
