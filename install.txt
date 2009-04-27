@@ -1,0 +1,22 @@
+/*
+* Copyright 2009 Elencode
+* This file is part of Elencode.
+* Elencode is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+* Elencode is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+* You should have received a copy of the GNU General Public License along with Vanilla; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+* The latest source code for Elencode is available at https://github.com/micz/elencode
+* Contact Mic at m [at] micz [dot] it
+*
+*/
+
+# This repo will contain the Elencode installer. At the moment it's only a description on how manually install all the needed components.
+
+
+== This is a work-in-progress! ==
+
+1. Install Wordpress (DON'T change the standard wp_ table prefix) => Info at http://codex.wordpress.org/Installing_WordPress
+2. Install bbPress (DON'T change the standard bb_ table prefix) => Info at http://bbpress.org/documentation/installation/
+3. Integrate Worpdress and bbPress authentication => Info at http://bbpress.org/plugins/topic/freshly-baked-cookies/installation/
+4. Edit the $config['base_url'] value in elencode_system/application/config/config.php line 12
+5. Edit elencode_system/application/config/database.php with your database configuration
+6. 

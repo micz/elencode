@@ -1,3 +1,0 @@
-[submodule "www/e/installer"]
-	path = www/e/installer
-	url = git://github.com/micz/elencode-installer.git
